@@ -1,5 +1,7 @@
 import { menuArray } from "./data.js";
-import { menuCard, orderCard } from "./templates.js";
+import { itemCard, menuCard, orderCard } from "./templates.js";
+
+let orderArr = []
 
 //Element grabbers
 const elements = {
@@ -9,7 +11,7 @@ const elements = {
 
 // Global event listener
 const events = {
-    add_btn: (target) => console.log("logged", target),
+    add_btn: (target) => addToCard(Number(target.dataset.id)), // passes object id into function
     order_btn: () => console.log("logged order btn"),
     remove_btn: () => console.log("logged remove btn")
 }
@@ -19,8 +21,10 @@ document.addEventListener("click", (e) => {
     events[event]?.(e.target)
 })
 
-// Html templates
-const menuHtml = menuArray.map(menuCard).join("")
-elements.menuContainer.innerHTML = menuHtml
-const orderHtml = orderCard
-elements.orderContainer.innerHTML = orderHtml
+// Html handler
+const addToCard = id => {
+        const item = menuArray.find(item => item.id === id) // find item
+        orderArr.unshift(item) // add item
+        elements.orderContainer.innerHTML = orderCard(orderArr.map(itemCard).join("")) // update html
+}
+elements.menuContainer.innerHTML = menuArray.map(menuCard).join("")
