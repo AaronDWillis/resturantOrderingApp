@@ -18,7 +18,7 @@ export const menuCard = food =>
         </div>
         </section>`
 
-export const orderCard = itemsHtml =>`
+export const orderCard = (totalPrice, itemsHtml) =>`
     <section>
         <h3 class="order_header">Your order</h3>
         <div id="item_list" class="item_list">
@@ -28,8 +28,8 @@ export const orderCard = itemsHtml =>`
 
         <!-- Total price -->
         <div class="total_price flex">
-            <h4>Total price</h4>
-            <p class="price">£totalprice</p>
+            <h4>Total:</h4>
+            <p class="price">£${totalPrice}</p>
         </div>
 
         <!-- Complete order button -->
@@ -42,6 +42,6 @@ export const itemCard = item => `
         <div class="order_item flex">
             <p>${item.emoji}</p>
             <h4>${item.name}</h4>
-            <p data-event="remove_btn" id="remove_btn">Remove</p>
+            <p data-event="remove_btn" data-id="${item.id}">Remove</p>
             <p>${item.price}</p>
         </div>`

@@ -1,4 +1,4 @@
-export const menuArray = [
+export const menuArr = [
   // STARTERS (8)
   { category: "starter", name: "Garlic Bread", ingredients: ["bread", "garlic butter", "parsley"], id: 0, price: 5, emoji: "🥖" },
   { category: "starter", name: "Bruschetta", ingredients: ["tomato", "basil", "olive oil", "ciabatta"], id: 1, price: 6, emoji: "🍅" },

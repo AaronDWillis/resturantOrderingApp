@@ -7,6 +7,19 @@ header{
     color: white;
 }
 
+.form_container{
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 400px;
+    width: 400px;
+    background-color: greenyellow;
+}
+
 .flex{
     display: flex;
 }

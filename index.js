@@ -1,4 +1,4 @@
-import { menuArray } from "./data.js";
+import { menuArr } from "./data.js";
 import { itemCard, menuCard, orderCard } from "./templates.js";
 
 let orderArr = []
@@ -6,14 +6,15 @@ let orderArr = []
 //Element grabbers
 const elements = {
     menuContainer: document.getElementById("menu_container"),
-    orderContainer: document.getElementById("order_container")
+    orderContainer: document.getElementById("order_container"),
+    formContainer: document.getElementById("form_container")
 }
 
 // Global event listener
 const events = {
-    add_btn: (target) => addToCard(Number(target.dataset.id)), // passes object id into function
-    order_btn: () => console.log("logged order btn"),
-    remove_btn: () => console.log("logged remove btn")
+    add_btn: (target) => updateCart(Number(target.dataset.id), 1),
+    remove_btn: (target) => updateCart(Number(target.dataset.id), -1),
+    order_btn: () => elements.formContainer.style.display = "inline"
 }
 document.addEventListener("click", (e) => {
     const event = e.target.dataset.event
@@ -22,9 +23,27 @@ document.addEventListener("click", (e) => {
 })
 
 // Html handler
-const addToCard = id => {
-        const item = menuArray.find(item => item.id === id) // find item
-        orderArr.unshift(item) // add item
-        elements.orderContainer.innerHTML = orderCard(orderArr.map(itemCard).join("")) // update html
+const findItem = id => 
+    orderArr.find(item => item.id === id)
+
+const renderOrder = () => {
+    const itemsHtml = orderArr.map(itemCard).join("") // update html
+    const totalPrice = orderArr.reduce((sum, item) => sum + item.price * item.qty, 0) 
+    elements.orderContainer.innerHTML = orderCard(totalPrice, itemsHtml)
 }
-elements.menuContainer.innerHTML = menuArray.map(menuCard).join("")
+
+const updateCart = (id, quantity) => {
+        const existingItem = findItem(id)
+        if (existingItem){
+            existingItem.qty += quantity
+            if (existingItem.qty <= 0){
+                orderArr = orderArr.filter(item => item.id !== id)
+            }
+        } else if (quantity > 0){
+            const menuItem = menuArr.find(item => item.id === id)
+            orderArr.unshift({...menuItem, qty: 1})
+        }
+        renderOrder()
+}
+
+elements.menuContainer.innerHTML = menuArr.map(menuCard).join("")
