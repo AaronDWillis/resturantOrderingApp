@@ -12,14 +12,20 @@ const elements = {
 
 // Global event listener
 const events = {
-    add_btn: (target) => updateCart(Number(target.dataset.id), 1),
-    remove_btn: (target) => updateCart(Number(target.dataset.id), -1),
+    add_btn: target => updateCart(Number(target.dataset.id), 1),
+    remove_btn: target => updateCart(Number(target.dataset.id), -1),
     order_btn: () => elements.formContainer.style.display = "inline"
 }
-document.addEventListener("click", (e) => {
+document.addEventListener("click", e => {
     const event = e.target.dataset.event
-    if(!event) return
-    events[event]?.(e.target)
+    if (event) {
+        events[event]?.(e.target)
+    }
+    const clickedInForm = elements.formContainer.contains(e.target)
+    const clickedOrder = event === "order_btn"
+    if (!clickedInForm && !clickedOrder){
+        elements.formContainer.style.display = "none"
+    }
 })
 
 // Html handler
