@@ -44,4 +44,5 @@ export const itemCard = item => `
             <h4>${item.name}</h4>
             <p data-event="remove_btn" data-id="${item.id}">Remove</p>
             <p>${item.price}</p>
+            <p>${item.qty}<p>
         </div>`
