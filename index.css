@@ -20,16 +20,9 @@ header{
     background-color: greenyellow;
 }
 
-/* Remove arrows/spinners
-input[type=number] {
-  -moz-appearance: textfield;
+.visible{
+    display: inline;
 }
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-} */
 
 .flex{
     display: flex;

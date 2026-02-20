@@ -16,14 +16,12 @@ const events = {
     remove_btn: target => updateCart(Number(target.dataset.id), -1),
     order_btn: () => elements.formContainer.style.display = "inline"
 }
+const hideForm = (target, eventName) => 
+    !elements.formContainer.contains(target) && eventName !== "order_btn"
 document.addEventListener("click", e => {
     const event = e.target.dataset.event
-    if (event) {
-        events[event]?.(e.target)
-    }
-    const clickedInForm = elements.formContainer.contains(e.target)
-    const clickedOrder = event === "order_btn"
-    if (!clickedInForm && !clickedOrder){
+    events[event]?.(e.target)
+    if (hideForm(e.target, event)){
         elements.formContainer.style.display = "none"
     }
 })
@@ -32,24 +30,26 @@ document.addEventListener("click", e => {
 const findItem = id => 
     orderArr.find(item => item.id === id)
 
-const renderOrder = () => {
+const renderCart = () => {
     const itemsHtml = orderArr.map(itemCard).join("") // update html
     const totalPrice = orderArr.reduce((sum, item) => sum + item.price * item.qty, 0) 
     elements.orderContainer.innerHTML = orderCard(totalPrice, itemsHtml)
 }
 
 const updateCart = (id, quantity) => {
-        const existingItem = findItem(id)
-        if (existingItem){
-            existingItem.qty += quantity
-            if (existingItem.qty <= 0){
-                orderArr = orderArr.filter(item => item.id !== id)
-            }
-        } else if (quantity > 0){
-            const menuItem = menuArr.find(item => item.id === id)
-            orderArr.unshift({...menuItem, qty: 1})
+    const existingItem = findItem(id)
+    if (existingItem){
+        existingItem.qty += quantity
+        if (existingItem.qty <= 0){
+            orderArr = orderArr.filter(item => item.id !== id)
+            elements.orderContainer.innerHTML = null
+            return
         }
-        renderOrder()
+    } else if (quantity > 0){
+        const menuItem = menuArr.find(item => item.id === id)
+        orderArr.unshift({...menuItem, qty: 1})
+    }
+    renderCart()
 }
 
 elements.menuContainer.innerHTML = menuArr.map(menuCard).join("")
