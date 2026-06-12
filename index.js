@@ -38,7 +38,6 @@ const findItem = id =>
 const renderCart = () => {
     const itemsHtml = orderArr.map(itemCard).join("") // update html
     const totalPrice = orderArr.reduce((sum, item) => sum + item.price * item.qty, 0) 
-    if (itemsHtml === )
     elements.orderContainer.innerHTML = orderCard(totalPrice, itemsHtml)
 }
 

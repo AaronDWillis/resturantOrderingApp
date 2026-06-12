@@ -5,6 +5,19 @@ body{
 header{
     background-image: url(images/header.jpg);
     color: white;
+    padding: 10px;
+}
+
+h1, h2{
+    margin: 40px 60px;
+}
+
+h2{
+    font-weight: 100;
+}
+
+h4{
+    font-size: 25px;
 }
 
 .form_container{
@@ -17,7 +30,11 @@ header{
     margin: auto;
     height: 400px;
     width: 400px;
-    background-color: greenyellow;
+    background-color: white;
+    box-shadow: 0px 0px 100px gray;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
 }
 
 .visible{
@@ -30,16 +47,39 @@ header{
 
 .menu_container, .order_container{
     flex-direction: column;
-    margin: 50px
+    margin: 50px;
+    align-items: center;
+}
+
+.card_middle{
+    padding: 20px;
+}
+
+.card_end{
+    align-content: center;
+}
+
+.card_btn{
+    border-radius: 100%;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid #D2D2D2;
+    font-size: 20px;
+}
+
+.input{
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
 }
 
 .card_container{
     border-bottom: 1px solid #D2D2D2;
+    width: 100%;
 }
 
 .menu_icon{
     width: 80px;
-    margin-right: 30px;
 }
 
 .card_title{
@@ -47,21 +87,34 @@ header{
     margin: 0;
 }
 
-.card_description{
+.card_description, .qty{
     font-size: 18px;
-    margin-top: 5px;
+    color: gray;
+}
+
+.price{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.card_icon{
+    font-size: 50px;
 }
 
 .order_header{
     text-align: center;
+    font-size: 30px;
 }
 
 .total_price{
     border-top: 2px solid black;
+    align-items: center;
+    gap: 20px;
 }
 
 .order_item{
     gap: 10px;
+    align-items: center;
 }
 
 .order_btn{
@@ -75,3 +128,6 @@ header{
     font-size: 16px;
 }
 
+.align_right{
+    margin-left: auto;
+}

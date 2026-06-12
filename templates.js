@@ -1,6 +1,6 @@
 export const menuCard = food =>
    `<section class=" flex">
-        <div class="card_container flex ${food.category}">
+        <div class="card_container flex">
             <!-- Menu icon -->
             <div class="card_start">
                 <p class="card_icon">${food.emoji}</p>
@@ -10,12 +10,12 @@ export const menuCard = food =>
             <div class="card_middle">
                 <h4 class="card_title">${food.name}</h4>
                 <p class="card_description">${food.ingredients}</p>
-                <p class="card_price">£${food.price}</p>
+                <p class="price">£${food.price}</p>
             </div>
 
             <!-- Menu increment button -->
             <div class="card_end">
-                <button data-event="add_btn" data-id="${food.id}" class="card_btn">+</button>
+                <button data-event="add_btn" data-id="${food.id}" class="card_btn align_right">+</button>
             </div>
         </div>
     </section>`
@@ -42,10 +42,9 @@ export const orderCard = (totalPrice, itemsHtml) =>`
 
 export const itemCard = item => `
         <div class="order_item flex">
-            <p>${item.emoji}</p>
             <h4>${item.name}</h4>
-            <p data-event="add_btn" data-id="${item.id}">Add</p>
-            <p data-event="remove_btn" data-id="${item.id}">Remove</p>
-            <p>Qty: ${item.qty}<p>
-            <p class="align_right">£${item.price*item.qty}</p>
+            <p class="qty" data-event="add_btn" data-id="${item.id}">Add</p>
+            <p class="qty" data-event="remove_btn" data-id="${item.id}">Remove</p>
+            <p class="qty">Qty: ${item.qty}<p>
+            <p class="align_right price item_price">£${item.price*item.qty}</p>
         </div>`
