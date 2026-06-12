@@ -7,7 +7,8 @@ let orderArr = []
 const elements = {
     menuContainer: document.getElementById("menu_container"),
     orderContainer: document.getElementById("order_container"),
-    formContainer: document.getElementById("form_container")
+    formContainer: document.getElementById("form_container"),
+    form: document.getElementById("form")
 }
 
 // Global event listener
@@ -18,6 +19,7 @@ const events = {
 }
 const hideForm = (target, eventName) => 
     !elements.formContainer.contains(target) && eventName !== "order_btn"
+ 
 document.addEventListener("click", e => {
     const event = e.target.dataset.event
     events[event]?.(e.target)
@@ -26,6 +28,9 @@ document.addEventListener("click", e => {
     }
 })
 
+//Form submit event listener
+elements.form.addEventListener("submit", () => console.log("submitted"))
+
 // Html handler
 const findItem = id => 
     orderArr.find(item => item.id === id)
@@ -33,6 +38,7 @@ const findItem = id =>
 const renderCart = () => {
     const itemsHtml = orderArr.map(itemCard).join("") // update html
     const totalPrice = orderArr.reduce((sum, item) => sum + item.price * item.qty, 0) 
+    if (itemsHtml === )
     elements.orderContainer.innerHTML = orderCard(totalPrice, itemsHtml)
 }
 

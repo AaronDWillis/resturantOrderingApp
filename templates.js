@@ -1,22 +1,24 @@
 export const menuCard = food =>
-   `<section class="card_container flex">
-        <!-- Menu icon -->
-        <div class="card_start">
-            <p class="card_icon">${food.emoji}</p>
-        </div>
-        
-        <!-- Menu title and description -->
-        <div class="card_middle">
-            <h4 class="card_title">${food.name}</h4>
-            <p class="card_description">${food.ingredients}</p>
-            <p class="card_price">${food.price}</p>
-        </div>
+   `<section class=" flex">
+        <div class="card_container flex ${food.category}">
+            <!-- Menu icon -->
+            <div class="card_start">
+                <p class="card_icon">${food.emoji}</p>
+            </div>
+            
+            <!-- Menu title and description -->
+            <div class="card_middle">
+                <h4 class="card_title">${food.name}</h4>
+                <p class="card_description">${food.ingredients}</p>
+                <p class="card_price">£${food.price}</p>
+            </div>
 
-        <!-- Menu increment button -->
-        <div class="card_end">
-            <button data-event="add_btn" data-id="${food.id}" class="card_btn">+</button>
+            <!-- Menu increment button -->
+            <div class="card_end">
+                <button data-event="add_btn" data-id="${food.id}" class="card_btn">+</button>
+            </div>
         </div>
-        </section>`
+    </section>`
 
 export const orderCard = (totalPrice, itemsHtml) =>`
     <section>
@@ -42,7 +44,8 @@ export const itemCard = item => `
         <div class="order_item flex">
             <p>${item.emoji}</p>
             <h4>${item.name}</h4>
+            <p data-event="add_btn" data-id="${item.id}">Add</p>
             <p data-event="remove_btn" data-id="${item.id}">Remove</p>
-            <p>${item.price}</p>
-            <p>${item.qty}<p>
+            <p>Qty: ${item.qty}<p>
+            <p class="align_right">£${item.price*item.qty}</p>
         </div>`
